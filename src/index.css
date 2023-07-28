@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-color: rgb(244, 244, 244);
 }
 
 .App {
@@ -9,9 +10,12 @@ body {
 
   width: 100vw;
   height: 100vh;
+
 }
 
 .game-field {
+  position: relative;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -19,9 +23,39 @@ body {
 
   width: 300px;
   height: 300px;
-
 }
 
 .game-field__item {
-  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #fff;
+
+  cursor: pointer;
+
+  -webkit-box-shadow: 1px 1px 13px -13px rgba(34, 60, 80, 1);
+  -moz-box-shadow: 1px 1px 13px -13px rgba(34, 60, 80, 1);
+  box-shadow: 1px 1px 13px -13px rgba(34, 60, 80, 1);
+}
+
+.game-field__item img {
+  width: 20px;
+}
+
+img[src*="/static/media/free-icon-close-10833724"] {
+  width: 30px;
+}
+
+.game-message {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  
+  font-size: 36px;
+  text-transform: uppercase;
+
+  top: -50px;
 }

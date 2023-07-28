@@ -3,7 +3,8 @@ import { Turn } from "./Turn";
 
 export interface Round {
     turn: Turn,
-    position: Position 
+    position: Position,
+    status: RoundStatus,
 }
 
 export type RoundStatus = Entity | 'draw' | 'progress';

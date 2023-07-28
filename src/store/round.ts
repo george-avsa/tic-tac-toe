@@ -9,7 +9,8 @@ const initialState: Round = {
         ['empty', 'empty', 'empty'],
         ['empty', 'empty', 'empty'],
         ['empty', 'empty', 'empty'],
-    ]
+    ],
+    status: 'progress'
 };
 
 export const roundSlice = createSlice({
@@ -19,10 +20,11 @@ export const roundSlice = createSlice({
         makeTurn(state, {payload}) {
             const [row, column] = payload;
             state.position[row][column] = state.turn;
-            console.log(state.position)
             const roundStatus = roundChecker(state.position, state.turn);
             if (roundStatus === 'progress') {
-                state.turn = state.turn === 'cross' ? 'zero' : 'cross'; 
+                state.turn = state.turn === 'cross' ? 'zero' : 'cross';
+            } else {
+                state.status = roundStatus;
             }
         }
     },
