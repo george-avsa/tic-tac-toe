@@ -1,24 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import { useDispatch } from 'react-redux';
+import { makeTurn } from './store/round';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(makeTurn([1,2]))
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="game-field">
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(kek => (
+          <div key={kek.toString()} className="game-field__item"></div>
+        ))}
+      </div>
     </div>
   );
 }
