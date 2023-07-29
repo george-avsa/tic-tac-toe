@@ -1,7 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { roundChecker } from "../roundChecker";
+import { createSlice } from "@reduxjs/toolkit";
 import { Round } from "../types/Round";
-import store from ".";
 
 const initialState: Round = {
     turn: 'cross',
@@ -13,23 +11,26 @@ const initialState: Round = {
     status: 'progress'
 };
 
-export const roundSlice = createSlice({
+const roundSlice = createSlice({
     name: 'round',
     initialState,
     reducers: {
-        makeTurn(state, {payload}) {
+        changePosition(state, {payload}) {
             const [row, column] = payload;
             state.position[row][column] = state.turn;
-            const roundStatus = roundChecker(state.position, state.turn);
-            if (roundStatus === 'progress') {
-                state.turn = state.turn === 'cross' ? 'zero' : 'cross';
-            } else {
-                state.status = roundStatus;
-            }
+        },
+        toggleTurn(state) {
+            state.turn = state.turn === 'cross' ? 'zero' : 'cross';
+        },
+        changeStatus(state, {payload}) {
+            state.status = payload
+        },
+        roundReturnDefault(state) {
+            state.position = initialState.position
         }
     },
 })
 
-export const {makeTurn} = roundSlice.actions
+export const {changePosition, toggleTurn, changeStatus, roundReturnDefault} = roundSlice.actions
 
 export const roundReducer = roundSlice.reducer

@@ -1,3 +1,4 @@
+import store from "./store";
 import { Position } from "./types/Position";
 import { RoundStatus } from "./types/Round";
 import { Turn } from "./types/Turn";
@@ -13,7 +14,9 @@ const winConditions = [
     [[1, 3], [2, 3], [3, 3]],
 ]
 
-export const roundChecker = (position: Position, entity: Turn): RoundStatus => {
+export const roundChecker = (position: Position, entity: Turn) => {
+    console.log(position, entity)
+    
     let result: RoundStatus = 'progress';
     winConditions.forEach(winCondition => {
         let win = winCondition.every(cell => {
@@ -23,5 +26,9 @@ export const roundChecker = (position: Position, entity: Turn): RoundStatus => {
             result = entity        
         }
     });
-    return result 
+    if (position.flat(2).every((field) => field !== 'empty')
+        && result === 'progress') {
+        result = 'draw';
+    }
+    return result; 
 }

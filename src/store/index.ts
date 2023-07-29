@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { roundReducer } from "./round";
+import { scoreReduce } from "./score";
 
 const store = configureStore({
     reducer: {
-        round: roundReducer
+        round: roundReducer,
+        score: scoreReduce,
     },
     devTools: true,
 })
