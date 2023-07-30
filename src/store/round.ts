@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Round } from "../types/Round";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { Round, RoundStatus } from "../types/Round";
 
 const initialState: Round = {
     turn: 'cross',
@@ -15,15 +15,15 @@ const roundSlice = createSlice({
     name: 'round',
     initialState,
     reducers: {
-        changePosition(state, {payload}) {
-            const [row, column] = payload;
+        changePosition(state, action: PayloadAction<number[]>) {
+            const [row, column] = action.payload;
             state.position[row][column] = state.turn;
         },
         toggleTurn(state) {
             state.turn = state.turn === 'cross' ? 'zero' : 'cross';
         },
-        changeStatus(state, {payload}) {
-            state.status = payload
+        changeStatus(state, action: PayloadAction<RoundStatus>) {
+            state.status = action.payload
         },
         roundReturnDefault(state) {
             state.position = initialState.position

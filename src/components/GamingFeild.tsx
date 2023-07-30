@@ -7,13 +7,14 @@ import { roundChecker } from "../roundChecker";
 import Message from "./Message";
 import FieldList from "./FieldList";
 import ResetRound from "./ResetRound";
+import { AppDispatch, RootState } from "../store";
 
 function GamingField() {
-    const gamingField = useSelector(({round}) => round.position);
-    const roundStatus = useSelector(({round}) => round.status);
-    const turn = useSelector(({round}) => round.turn);
+    const gamingField = useSelector((state:RootState) => state.round.position);
+    const roundStatus = useSelector((state:RootState) => state.round.status);
+    const turn = useSelector((state:RootState) => state.round.turn);
 
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
     useEffect(() => {
         const result = roundChecker(gamingField, turn);

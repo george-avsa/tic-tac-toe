@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { changePosition } from "../store/round";
 import circle from './../images/free-icon-circle-2089718.svg';
 import cross from './../images/free-icon-close-10833724.svg';
+import { AppDispatch } from "../store";
 
 type props = {
     entity: string,
@@ -11,7 +12,7 @@ type props = {
 function FieldItem({entity, index}: props) {
 
 
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
     function clickField(e:React.MouseEvent<HTMLDivElement>) {
         if (e.target) {

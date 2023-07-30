@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import restore from "./../images/reload.svg"
 import { changeStatus, roundReturnDefault } from "../store/round";
+import { AppDispatch, RootState } from "../store";
 
 function ResetRound() {
-    const status = useSelector(({round}) => round.status);
-    const dispatch = useDispatch();
+    const status = useSelector((state:RootState) => state.round.status);
+    const dispatch: AppDispatch = useDispatch();
 
     function resetRound() {
         dispatch(roundReturnDefault())

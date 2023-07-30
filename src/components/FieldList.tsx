@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
 import FieldItem from './FieldItem';
+import { RootState } from '../store';
 
 
 function FieldList() {
-    const gamingField = useSelector(({round}) => round.position);
+    const gamingField = useSelector((state:RootState) => state.round.position);
 
     return ( 
         <>

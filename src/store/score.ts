@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Score } from "../types/Score";
 import { Turn } from "../types/Turn";
 
@@ -11,14 +11,13 @@ const scoreSlice = createSlice({
     name: 'score',
     initialState,
     reducers: {
-        changeScore(state, action) {
-            const payload: Turn = action.payload;
-            console.log(state)
+        changeScore(state, action: PayloadAction<Turn>) {
+            const payload = action.payload;
             state[payload] = state[payload] + 1; 
         },
         scoreReturnDefault(state) {
-            state.cross = 0
-            state.zero = 0
+            state.cross = 0;
+            state.zero = 0;
         }
     }
 })
